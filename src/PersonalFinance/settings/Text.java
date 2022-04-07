@@ -44,6 +44,20 @@ final public class Text {
         data.put("OCTOBER", "Октябрь");
         data.put("NOVEMBER", "Ноябрь");
         data.put("DECEMBER", "Декабрь");
-        data.put("", "");
+
+        data.put("TITLE_EMPTY", "Вы не ввели название");
+        data.put("IF_EXISTS", "Такая запись уже существует");
+        data.put("DATE_FORMAT", "Не корректный формат даты");
+        data.put("CODE_EMPTY", "Вы не указали код");
+        data.put("CURRENCY_EMPTY", "Вы не выбрали валюту");
+        data.put("ARTICLE_EMPTY", "Вы не выбрали статью");
+        data.put("ACCOUNT_EMPTY", "Вы не выбрали счет");
+        data.put("RATE_INCORRECT", "Некорректное значение курса");
+        data.put("AMOUNT_FORMAT", "Некорректный формат суммы");
+        data.put("NO_BASE_CURRENCY", "Необходима базовая валюта, установите сначала этот параметр в другой валюте, он автоматически снимется в этой");
+
+        //data.put("", "");
+
+
     }
 }
