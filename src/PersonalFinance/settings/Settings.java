@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.prefs.Preferences;
 
-public class Settings {
+public final class Settings {
 
     public static final File FONT_ROBOTO_LIGHT = new File("fonts/roboto-light.ttf");
     public static final File SAVE_DIR = new File("saves/");
@@ -18,8 +18,8 @@ public class Settings {
     public static final String FORMAT_AMOUNT = "%.2f";
     public static final String FORMAT_RATE = "%.4f";
     public static final String FORMAT_DATE = "dd.MM.yyyy";
-    public static final String FORMAT_MONTH = "MMMM yyyy";
-    public static final String FORMAT_YEAR = "yyyy";
+    public static final String FORMAT_DATE_MONTH = "MMMM yyyy";
+    public static final String FORMAT_DATE_YEAR = "yyyy";
 
     public static final int COUNT_OVERVIEW_ROWS = 10;
 
