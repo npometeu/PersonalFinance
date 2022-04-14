@@ -1,6 +1,7 @@
 package PersonalFinance.model;
 
 import PersonalFinance.exception.ModelException;
+import PersonalFinance.saveload.SaveData;
 
 import java.util.Objects;
 
@@ -13,6 +14,7 @@ public class Article extends Common {
         if (title.length() == 0) {
             throw new ModelException(ModelException.TITLE_EMPTY);
         }
+        this.title = title;
     }
 
     public String getTitle() {
@@ -46,5 +48,12 @@ public class Article extends Common {
     @Override
     public String getValueForComboBox() {
         return title;
+    }
+
+    @Override
+    public void postEdit(SaveData sd) {
+        for (Transaction t : sd.getTransactions()) {
+            if (t.getArticle().equals(sd.getOldCommon())) t.setArticle(this);
+        }
     }
 }

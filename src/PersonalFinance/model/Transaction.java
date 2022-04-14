@@ -1,6 +1,7 @@
 package PersonalFinance.model;
 
 import PersonalFinance.exception.ModelException;
+import PersonalFinance.saveload.SaveData;
 
 import java.util.Date;
 
@@ -26,6 +27,18 @@ public class Transaction extends Common {
         this.article = article;
         this.amount = amount;
         this.notice = notice;
+        this.date = date;
+    }
+    public Transaction(Account account, Article article, double amount, Date date) throws ModelException {
+        if (account == null) {
+            throw new ModelException(ModelException.ACCOUNT_EMPTY);
+        }
+        if (article == null) {
+            throw new ModelException(ModelException.ARTICLE_EMPTY);
+        }
+        this.account = account;
+        this.article = article;
+        this.amount = amount;
         this.date = date;
     }
 
@@ -88,5 +101,24 @@ public class Transaction extends Common {
                 '}';
     }
 
+    @Override
+    public void postAdd(SaveData sd) {
+        setAmounts(sd);
+    }
 
+    @Override
+    public void postEdit(SaveData sd) {
+        setAmounts(sd);
+    }
+
+    @Override
+    public void postRemove(SaveData sd) {
+        setAmounts(sd);
+    }
+
+    public void setAmounts(SaveData sd) {
+        for (Account a : sd.getAccounts()) {
+            a.setAmountFromTransactionAndTransfers(sd.getTransactions(), sd.getTransfers());
+        }
+    }
 }
