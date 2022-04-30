@@ -5,6 +5,7 @@ import PersonalFinance.model.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 public final class SaveData {
@@ -175,15 +176,6 @@ public final class SaveData {
         saved = false;
     }
 
-    private List getRef(Common c) {
-        if (c instanceof Account) return accounts;
-        if (c instanceof Article) return articles;
-        if (c instanceof Currency) return currencies;
-        if (c instanceof Transaction) return transactions;
-        if (c instanceof Transfer) return transfers;
-        return null;
-    }
-
     @Override
     public String toString() {
         return "SaveData{" +
@@ -193,5 +185,22 @@ public final class SaveData {
                 ", transactions=" + transactions +
                 ", transfers=" + transfers +
                 '}';
+    }
+
+    public void updateCurrencies() throws Exception {
+        HashMap<String, Double> rates = RateCurrency.getRates(getBaseCurrency());
+        for (Currency c : currencies)
+            c.setRate(rates.get(c.getCode()));
+        for (Account a : accounts)
+            a.getCurrency().setRate(rates.get(a.getCurrency().getCode()));
+    }
+
+    private List getRef(Common c) {
+        if (c instanceof Account) return accounts;
+        if (c instanceof Article) return articles;
+        if (c instanceof Currency) return currencies;
+        if (c instanceof Transaction) return transactions;
+        if (c instanceof Transfer) return transfers;
+        return null;
     }
 }
